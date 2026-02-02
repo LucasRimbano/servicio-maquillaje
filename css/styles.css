@@ -233,6 +233,21 @@ h1{
   .fp-controlArrow.fp-next{
     border-width: 20px 0 20px 18px !important;
   }
+   
+  .servicios .container{
+    padding-bottom: 100px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next{
+    width: 12%;
+    opacity: .7;
+  }
+
+  .carousel-indicators{
+    bottom: -12px;
+  }
+   
 }
 
 .footer-fixed{
@@ -302,3 +317,14 @@ h1{
 .btn-top:hover{
   transform: translateY(-4px);
 }
+/* MOBILE card del carrusel */
+.card-serv{
+  width: min(90vw, 360px);
+  border-radius: 22px;
+}
+
+.card-serv .card-img-top{
+  height: 210px;
+  object-fit: cover;
+}
+

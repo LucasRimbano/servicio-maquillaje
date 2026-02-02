@@ -96,6 +96,7 @@
   </nav>
 
   <div id="fullpage">
+
     <div class="section hero">
       <div class="intro">
         <div class="cta-fixed">
@@ -114,119 +115,159 @@
       </div>  
       </div>
     </div>
+    
+    
+  <div class="section servicios">
+  <div class="container py-5">
 
+    <!-- =========================
+         MOBILE: CARRUSEL (solo < md)
+    ========================== -->
+    <div id="serviciosCarousel" class="carousel slide d-md-none" data-bs-ride="false" data-bs-touch="true">
+      
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="2"></button>
+      </div>
 
-      <div class="section servicios">
+      <div class="carousel-inner">
 
-  <div class="container-fluid px-5 w-100">
+        <!-- ITEM 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+            <div class="card card-serv shadow-lg border-0 text-center overflow-hidden">
+              <img src="/assets/pexels-mart-production-7290713.jpg" class="card-img-top" alt="Maquillaje social">
+              <div class="card-body d-flex flex-column p-4">
+                <i class="bi bi-balloon-fill fs-1 text-primary mb-3"></i>
+                <h5 class="card-title fw-bold mb-2">Cumpleaños & Eventos</h5>
+                <p class="card-text flex-grow-1 mb-4">
+                  Maquillaje social profesional, resistente y perfecto para fotos y video.
+                </p>
+                <a href="#galeria" class="btn btn-primary mt-auto js-goto-slide" data-slide="0">
+                  Consultar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="row g-5 justify-content-center align-items-stretch w-100">
+        <!-- ITEM 2 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card card-serv shadow-lg border-0 text-center overflow-hidden">
+              <img src="/assets/pexels-cottonbro-5871743.jpg" class="card-img-top" alt="Maquillaje de bodas">
+              <div class="card-body d-flex flex-column p-4">
+                <i class="bi bi-gem fs-1 text-warning mb-3"></i>
+                <h5 class="card-title fw-bold mb-2">Bodas & 15 años</h5>
+                <p class="card-text flex-grow-1 mb-4">
+                  Prueba previa + maquillaje el día del evento. Look elegante y duradero.
+                </p>
+                <a href="#galeria" class="btn btn-primary mt-auto js-goto-slide" data-slide="1">
+                  Reservar fecha
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <!-- ================== CARD 1 ================== -->
-      <!-- Cumpleaños / Eventos -->
-      <div class="col-12 col-md-4 d-flex">
+        <!-- ITEM 3 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card card-serv shadow-lg border-0 text-center overflow-hidden">
+              <img src="/assets/pexels-israwmx-28224939.jpg" class="card-img-top" alt="Maquillaje para cine">
+              <div class="card-body d-flex flex-column p-4">
+                <i class="bi bi-camera-reels-fill fs-1 text-warning mb-3"></i>
+                <h5 class="card-title fw-bold mb-2">Cine & Producciones</h5>
+                <p class="card-text flex-grow-1 mb-4">
+                  Maquillaje profesional para cámara, continuidad y retoques en set.
+                </p>
+                <a href="#galeria" class="btn btn-primary mt-auto js-goto-slide" data-slide="2">
+                  Cotizar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+
+    <!-- =========================
+         DESKTOP: TU GRILLA (md+)
+    ========================== -->
+    <div class="row g-5 justify-content-center align-items-stretch d-none d-md-flex">
+
+      <!-- CARD 1 -->
+      <div class="col-md-4 d-flex">
         <div class="card w-100 h-100 shadow-lg border-0 text-center" data-aos="zoom-in" data-aos-delay="0">
-
-          <img src="/assets/pexels-mart-production-7290713.jpg"
-               class="card-img-top"
-               alt="Maquillaje social">
-
+          <img src="/assets/pexels-mart-production-7290713.jpg" class="card-img-top" alt="Maquillaje social">
           <div class="card-body d-flex flex-column">
-
             <i class="bi bi-balloon-fill fs-1 text-primary mb-3"></i>
-
-            <h5 class="card-title fw-bold">
-              Cumpleaños & Eventos
-            </h5>
-
+            <h5 class="card-title fw-bold">Cumpleaños & Eventos</h5>
             <p class="card-text flex-grow-1">
               Maquillaje social profesional, resistente y perfecto para fotos y video.
             </p>
-
             <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="0">
               Consultar
             </a>
-
           </div>
-
         </div>
-        
       </div>
 
-
-
-      <!-- ================== CARD 2 ================== -->
-      <!-- Bodas -->
-      <div class="col-12 col-md-4 d-flex">
-
+      <!-- CARD 2 -->
+      <div class="col-md-4 d-flex">
         <div class="card w-100 h-100 shadow-lg border-0 text-center" data-aos="fade-up" data-aos-delay="150">
-
-          <img src="/assets/pexels-cottonbro-5871743.jpg"
-               class="card-img-top"
-               alt="Maquillaje de bodas">
-
+          <img src="/assets/pexels-cottonbro-5871743.jpg" class="card-img-top" alt="Maquillaje de bodas">
           <div class="card-body d-flex flex-column">
-
-           <i class="bi bi-gem fs-1 text-warning"></i>
-
-
-            <h5 class="card-title fw-bold">
-              Bodas & 15 años
-            </h5>
-
+            <i class="bi bi-gem fs-1 text-warning mb-3"></i>
+            <h5 class="card-title fw-bold">Bodas & 15 años</h5>
             <p class="card-text flex-grow-1">
               Prueba previa + maquillaje el día del evento. Look elegante y duradero.
             </p>
-
             <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="1">
               Reservar fecha
             </a>
-
           </div>
-
         </div>
-
       </div>
 
-
-
-      <!-- ================== CARD 3 ================== -->
-      <!-- Cine / Producciones -->
-      <div class="col-12 col-md-4 d-flex">
-
-        <div class="card w-100 h-100 shadow-lg border-0 text-center" data-aos="fade-up" data-aos-delay="300" >
-
-          <img src="/assets/pexels-israwmx-28224939.jpg"
-               class="card-img-top"
-               alt="Maquillaje para cine">
-
+      <!-- CARD 3 -->
+      <div class="col-md-4 d-flex">
+        <div class="card w-100 h-100 shadow-lg border-0 text-center" data-aos="fade-up" data-aos-delay="300">
+          <img src="/assets/pexels-israwmx-28224939.jpg" class="card-img-top" alt="Maquillaje para cine">
           <div class="card-body d-flex flex-column">
-
             <i class="bi bi-camera-reels-fill fs-1 text-warning mb-3"></i>
-
-            <h5 class="card-title fw-bold">
-              Cine & Producciones
-            </h5>
-
+            <h5 class="card-title fw-bold">Cine & Producciones</h5>
             <p class="card-text flex-grow-1">
               Maquillaje profesional para cámara, continuidad y retoques en set.
             </p>
-
             <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="2">
               Cotizar
             </a>
-
-
           </div>
-
         </div>
-
       </div>
 
     </div>
+
   </div>
 </div>
+
+
+
+
+
     <div class="section galeria">
 
       <div class="slide" data-anchor="consultar">
