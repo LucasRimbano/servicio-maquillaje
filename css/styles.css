@@ -114,6 +114,16 @@ h1{
   max-width: 1400px;
 }
 
+/* Desktop → abajo tipo CTA landing */
+.cta-fixed{
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+
 
 @media (max-width: 768px){
    .servicios .card-img-top{
@@ -128,6 +138,11 @@ h1{
     background-repeat: no-repeat;
 
   }
+   .cta-fixed{
+    top: 90px;   /* debajo de la navbar */
+    bottom: auto;
+  }
+
 
 }
 .footer-fixed{

@@ -19,13 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   new fullpage("#fullpage", {
     autoScrolling: true,
-    scrollBar: false,       // ✅ clave
+    scrollBar: false,      
     scrollOverflow: true,   // ✅ si servicios es más alto que 100vh
     responsiveWidth: 768,   // ✅ mobile = scroll normal (AOS funciona mejor)
     navigation: true,
     slidesNavigation: true,
     controlArrows: true,
     fixedElements: ".navbar",
+    paddingTop: "70px",  
     anchors: ["inicio", "galeria", "servicios"],
 
     afterLoad: function(origin, destination) {
