@@ -130,4 +130,38 @@ h1{
   }
 
 }
+.footer-fixed{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg,#b76e79,#8e5a6a);
+  color: #fff;
+}
 
+.footer-fixed a{ color:#fff; text-decoration:none; }
+.footer-fixed a:hover{ color:#ffd6e0; }
+
+/* para que no tape contenido */
+#fullpage{ padding-bottom: 56px; }
+
+
+.cta-fixed{
+  bottom: 70px !important; /* 👈 sube el botón por encima del footer */
+  padding-bottom: 10px;    /* opcional */
+}
+
+.custom-popover{
+  --bs-popover-bg: #ffffff;
+  --bs-popover-border-radius: 16px;
+}
+
+/* 🔥 SOLO HEADER */
+.custom-popover .popover-header{
+  background: linear-gradient(135deg,#706365,#f1b8c9);
+  color:#fff;
+  font-weight:600;
+  text-align:center;
+
+}

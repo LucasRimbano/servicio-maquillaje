@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+   // activar popovers
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+    popoverTriggerList.forEach(el => new bootstrap.Popover(el));
+
   if (typeof fullpage === "undefined") {
     console.error("❌ fullpage NO cargó");
     return;
@@ -34,6 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     onLeave: function(origin, destination) {
+
+            // 🔥 cerrar TODOS los popovers abiertos
+      document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+        const instance = bootstrap.Popover.getInstance(el);
+        if(instance){
+          instance.hide();
+        }
+      });
       // reset para reanimar
       origin.item.querySelectorAll("[data-aos]").forEach(el => {
         el.classList.remove("aos-animate");
