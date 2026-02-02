@@ -1,0 +1,133 @@
+
+
+/* ===== Base ===== */
+html, body{
+  height: 100%;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+h1{
+  font-size: calc(2em + 2vw);
+  margin: 0;
+}
+
+/* ===== fullPage layout ===== */
+.section{
+  /* fullpage ya maneja el alto, pero esto ayuda a centrar contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Centrar slides */
+.slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Intro */
+.intro p{
+  width: min(50%, 900px);
+  margin: 0.5em auto;
+  font-size: 1.5em;
+}
+
+/* ===== Fondos por CLASE (PRO, estable) ===== */
+/* HERO */
+.section.hero,
+.fp-section.hero,
+.section.hero .fp-tableCell{
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("/assets/logodef.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:#fff !important;
+}
+
+
+/* GALERIA */
+.section.galeria,
+.fp-section.galeria,
+.section.galeria .fp-tableCell{
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("/assets/logo2.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:#fff !important;
+
+}
+
+/* SERVICIOS */
+.section.servicios,
+.fp-section.servicios,
+.section.servicios .fp-tableCell{
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("/assets/logo.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:#fff !important;
+}
+
+/* ===== Cards en Servicios (opcional, te queda pro) ===== */
+.servicios .card{
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.servicios .card-img-top{
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Deja aire para navbar y respiración visual */
+.servicios .container{
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+
+
+.servicios .container-fluid{
+  max-width: 1400px;
+}
+
+
+@media (max-width: 768px){
+   .servicios .card-img-top{
+    height: 220px; /* baja altura para que entren */
+  }
+  .section.hero,
+  .fp-section.hero,
+  .section.hero .fp-tableCell{
+
+    background-size: cover !important;   /* 🔥 SIEMPRE cover para llenar */
+    background-position: 45% center;     /* mueve a la derecha para que entre la J */
+    background-repeat: no-repeat;
+
+  }
+
+}
+
