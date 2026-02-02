@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-   // activar popovers
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    popoverTriggerList.forEach(el => new bootstrap.Popover(el));
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  // activar popovers
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+  popoverTriggerList.forEach(el => new bootstrap.Popover(el, {
+    trigger: "click"   // ✅ fuerza click aunque el HTML diga otra cosa
+  }));
 
   if (typeof fullpage === "undefined") {
     console.error("❌ fullpage NO cargó");
@@ -10,52 +14,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (typeof AOS !== "undefined") {
-    AOS.init({
-      duration: 900,
-      once: false,
-      disable: false
-    });
+    AOS.init({ duration: 900, once: false, disable: false });
   }
 
   new fullpage("#fullpage", {
     autoScrolling: true,
-    scrollBar: false,      
-    scrollOverflow: true,   // ✅ si servicios es más alto que 100vh
-    responsiveWidth: 768,   // ✅ mobile = scroll normal (AOS funciona mejor)
+    scrollBar: false,
+    scrollOverflow: !isMobile, // ✅ clave
+    responsiveWidth: 768,
     navigation: true,
     slidesNavigation: true,
     controlArrows: true,
     fixedElements: ".navbar",
-    paddingTop: "70px",  
+    normalScrollElements: '[data-bs-toggle="popover"], .popover',
+    paddingTop: "70px",
     anchors: ["inicio", "galeria", "servicios"],
 
     afterLoad: function(origin, destination) {
-      // 1) refrescar mediciones
       if (typeof AOS !== "undefined") AOS.refreshHard();
-
-      // 2) forzar animación al entrar
-      destination.item.querySelectorAll("[data-aos]").forEach(el => {
-        el.classList.add("aos-animate");
-      });
+      destination.item.querySelectorAll("[data-aos]").forEach(el => el.classList.add("aos-animate"));
     },
 
     onLeave: function(origin, destination) {
-
-            // 🔥 cerrar TODOS los popovers abiertos
       document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
         const instance = bootstrap.Popover.getInstance(el);
-        if(instance){
-          instance.hide();
-        }
+        if (instance) instance.hide();
       });
-      // reset para reanimar
-      origin.item.querySelectorAll("[data-aos]").forEach(el => {
-        el.classList.remove("aos-animate");
-      });
+      origin.item.querySelectorAll("[data-aos]").forEach(el => el.classList.remove("aos-animate"));
     }
   });
 
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refreshHard();
   }, 300);
+
 });
