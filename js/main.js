@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const btnTop = document.getElementById("btnTop");
 
   // activar popovers
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     afterLoad: function(origin, destination) {
       if (typeof AOS !== "undefined") AOS.refreshHard();
+      
       destination.item.querySelectorAll("[data-aos]").forEach(el => el.classList.add("aos-animate"));
     },
 
@@ -41,7 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (instance) instance.hide();
       });
       origin.item.querySelectorAll("[data-aos]").forEach(el => el.classList.remove("aos-animate"));
+      
+       if(destination.index > 0){
+        btnTop.classList.add("show");
+      } else {
+        btnTop.classList.remove("show");
+      }
+    
     }
+  });
+ 
+  // 🔥 subir arriba con fullPage (NO scrollTo)
+  btnTop.addEventListener("click", () => {
+    fullpage_api.moveTo(1);
   });
 
   setTimeout(() => {
