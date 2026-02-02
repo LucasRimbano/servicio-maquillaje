@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fixedElements: ".navbar",
     normalScrollElements: '[data-bs-toggle="popover"], .popover',
     paddingTop: "70px",
-    anchors: ["inicio", "galeria", "servicios"],
+    anchors: ["inicio", "servicios", "galeria", "preguntas"],
 
     afterLoad: function(origin, destination) {
       if (typeof AOS !== "undefined") AOS.refreshHard();
@@ -61,5 +61,68 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refreshHard();
   }, 300);
+
+  document.querySelectorAll(".js-goto-slide").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const slide = Number(btn.dataset.slide || 1);
+
+    // sección 2 por anchor: "galeria"
+    fullpage_api.moveTo("galeria", slide);
+  });
+});
+
+});
+
+class Cliente {
+
+  static id = 0;
+
+  constructor(nombre, evento, fecha, telefono){
+    this.id = ++Cliente.id;
+    this.nombre = nombre;
+    this.evento = evento;
+    this.fecha = fecha;
+    this.telefono = telefono;
+  }
+
+  descripcion(){
+  return `Hola Julieta 💄
+    Quiero reservar maquillaje.
+
+    👤 Nombre: ${this.nombre}
+    💍 Evento: ${this.evento}
+    📅 Fecha: ${this.fecha}
+    📞 Teléfono: ${this.telefono}
+
+    ¿Tenés disponibilidad para esa fecha?`;
+  }
+
+}
+
+let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+
+const form = document.getElementById("formReserva");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const evento = document.getElementById("evento").value;
+  const fecha = document.getElementById("fecha").value;
+  const telefono = document.getElementById("telefono").value;
+
+  const cliente = new Cliente(nombre, evento, fecha, telefono);
+
+  reservas.push(cliente);
+
+  localStorage.setItem("reservas", JSON.stringify(reservas));
+
+  // 👉 redirige a WhatsApp automáticamente
+  const mensaje = encodeURIComponent(cliente.descripcion());
+  window.open(`https://wa.me/54911XXXXXXXX?text=${mensaje}`);
+
+  form.reset();
 
 });

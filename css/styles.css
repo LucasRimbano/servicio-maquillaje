@@ -90,6 +90,21 @@ h1{
   color:#fff !important;
 }
 
+/* PREGUNTAS */
+.section.preguntas,
+.fp-section.preguntas,
+.section.preguntas .fp-tableCell{
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("/assets/_t8MZdVk_MSoIRqMgJ_c3R-P_QtANvEwLby0VMfyD17je2OAUJPzaO8_S4qw1RDotKjEL5kdLUZRHGmiVd9SHHjeQXD6TdwEIoEdPCE8nzQ.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:#fff !important;
+}
+
 /* ===== Cards en Servicios (opcional, te queda pro) ===== */
 .servicios .card{
   border: 0;
@@ -137,6 +152,16 @@ h1{
   100% { transform: translateX(-50%) translateY(0); }
 }
 
+.galeria .slide:nth-child(1){ background: linear-gradient(135deg,#8e5a6a,#ff3cac); }
+.galeria .slide:nth-child(2){ background: linear-gradient(135deg,#7c4858,#a100ff); }
+.galeria .slide:nth-child(3){ background: linear-gradient(135deg,#2a003f,#8e5a6a); }
+
+.galeria .slide{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
 
 
 
@@ -162,8 +187,43 @@ h1{
     bottom: 180px;
     right: 18px;
   }
+  
+  /* Título */
+  .galeria h2{
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  /* Texto */
+  .galeria .lead{
+    font-size: 0.98rem;
+    line-height: 1.4;
+    margin-bottom: 18px;
+  }
+
+  /* Contenedor de botones */
+  .galeria .mt-4{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Botones full width */
+  .galeria .btn{
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  /* elimina márgenes laterales tipo me-2 */
+  .galeria .me-2{
+    margin-right: 0 !important;
+  }
 
 }
+
 .footer-fixed{
   position: fixed;
   left: 0;

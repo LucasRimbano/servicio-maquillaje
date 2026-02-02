@@ -60,19 +60,12 @@
       </button>
 
 
-      </div>
+      </div>  
       </div>
     </div>
 
-    <div class="section galeria">
-      <div class="slide"></div>
-      <div class="slide"></div>
-      <div class="slide"></div>
-    </div>
- 
 
-
-   <div class="section servicios">
+      <div class="section servicios">
 
   <div class="container-fluid px-5 w-100">
 
@@ -100,7 +93,7 @@
               Maquillaje social profesional, resistente y perfecto para fotos y video.
             </p>
 
-            <a href="#" class="btn btn-primary w-100 mt-auto">
+            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="1">
               Consultar
             </a>
 
@@ -135,7 +128,7 @@
               Prueba previa + maquillaje el día del evento. Look elegante y duradero.
             </p>
 
-            <a href="#" class="btn btn-primary w-100 mt-auto">
+            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="2">
               Reservar fecha
             </a>
 
@@ -183,10 +176,159 @@
   </div>
 </div>
 
+    <div class="section galeria">
+  <!-- Slide 1: Consultar -->
+  <div class="slide" data-anchor="consultar">
+    <div class="container text-white">
+      <h2 class="fw-bold">Consultar</h2>
+      <p class="lead">Contame fecha, tipo de evento y zona. Te respondo por WhatsApp.</p>
+      <a class="btn btn-light" href="#servicios">Volver a Servicios</a>
+    </div>
+  </div>
+
+  <!-- Slide 2: Reservar -->
+  <div class="slide" data-anchor="reservar">
+  <div class="mt-4">
+ 
+       
+   <button 
+  class="btn btn-primary bi bi-calendar-check me-2"
+  data-bs-toggle="modal"
+  data-bs-target="#reservaModal">
+  Reservar fecha
+</button>
+
+  <a href="#servicios"
+     class="btn btn-outline-light btn-lg px-4">
+     Volver
+  </a>
+</div>
+
+  </div>
+
+  <!-- Slide 3: Cotizar -->
+  <div class="slide" data-anchor="cotizar">
+    <div class="container text-white">
+      <h2 class="fw-bold">Cotizar</h2>
+      <p class="lead">Cine & producciones: continuidad, retoques y maquillaje para cámara.</p>
+      <a class="btn btn-light" href="#servicios">Volver a Servicios</a>
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+
+<div class="section preguntas">
+
+  <div class="container text-dark">
+
+    <h2 class="text-center fw-bold mb-5">Preguntas frecuentes</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <!-- 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Con cuánta anticipación debo reservar?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Recomendamos reservar mínimo 2-3 semanas antes del evento. Para bodas o 15, con 1-2 meses.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Incluye prueba de maquillaje?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Sí, los servicios de boda y 15 años incluyen prueba previa para elegir el look ideal.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿Trabajás a domicilio?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Sí, me traslado a domicilio o al lugar del evento dentro de Buenos Aires y alrededores.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+            ¿Qué marcas de maquillaje usás?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Utilizo productos profesionales de larga duración, hipoalergénicos y HD para cámara.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 
 </div>
  <!-- FIN fullpage -->
+
+ <div class="modal fade" id="reservaModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Reservar turno 💄</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form id="formReserva">
+
+          <input class="form-control mb-3" type="text" id="nombre" placeholder="Nombre" required>
+
+          <select class="form-control mb-3" id="evento">
+            <option>Boda</option>
+            <option>15 años</option>
+            <option>Cumpleaños</option>
+            <option>Producción / Cine</option>
+          </select>
+
+          <input class="form-control mb-3" type="date" id="fecha" required>
+
+          <input class="form-control mb-3" type="tel" id="telefono" placeholder="Teléfono" required>
+
+          <button class="btn btn-success w-100">Confirmar reserva</button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <button id="btnTop" class="btn-top">
   <i class="bi bi-arrow-up"></i>
