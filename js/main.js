@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const btnTop = document.getElementById("btnTop");
+  const offcanvasEl = document.getElementById("offcanvasDarkNavbar");
+  const offcanvas = offcanvasEl ? bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl) : null;
 
   // activar popovers
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
@@ -53,6 +55,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
  
+    // Links normales (secciones por anchor)
+  document.querySelectorAll(".js-nav").forEach(link => {
+    link.addEventListener("click", () => {
+      if (offcanvas) offcanvas.hide();
+    });
+  });
+
+  // Links que van a un slide específico dentro de galería
+  document.querySelectorAll(".js-slide").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const slide = Number(link.dataset.slide || 0);
+
+      // ir a la sección galeria y luego al slide
+      if (typeof fullpage_api !== "undefined") {
+        fullpage_api.moveTo("galeria", slide);
+      } else {
+        // fallback: por si no está fullpage_api
+        location.hash = "#galeria";
+      }
+
+      if (offcanvas) offcanvas.hide();
+    });
+  });
+
   // 🔥 subir arriba con fullPage (NO scrollTo)
   btnTop.addEventListener("click", () => {
     fullpage_api.moveTo(1);
@@ -126,3 +154,24 @@ form.addEventListener("submit", function(e){
   form.reset();
 
 });
+
+function goToSection(anchor) {
+  // Si fullPage está activo, navegar por API
+  if (typeof fullpage_api !== "undefined" && fullpage_api && fullpage_api.moveTo) {
+    try {
+      fullpage_api.moveTo(anchor);
+      return;
+    } catch (e) {
+      // cae al fallback
+    }
+  }
+
+  // Fallback para mobile (cuando fullPage está desactivado por responsiveWidth)
+  const section = document.querySelector(`.section.${anchor}`) || document.getElementById(anchor);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    // último fallback: hash
+    location.hash = `#${anchor}`;
+  }
+}

@@ -34,11 +34,62 @@
 
       <div class="offcanvas offcanvas-end " style="background:#7c4858c7;" tabindex="-1" id="offcanvasDarkNavbar">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title">Dark offcanvas</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-          <!-- contenido -->
+                  
+
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-1">
+
+                <li class="nav-item">
+                  <a class="nav-link text-white js-nav" href="#inicio">
+                    <i class="bi bi-house-door me-2"></i> Inicio
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-white js-nav" href="#servicios">
+                    <i class="bi bi-stars me-2"></i> Servicios
+                  </a>
+                </li>
+
+                <!-- Galería sección (entra al slide 1 por defecto) -->
+                <li class="nav-item">
+                  <a class="nav-link text-white js-nav" href="#galeria">
+                    <i class="bi bi-images me-2"></i> Consultar / Reservar / Cotizar
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-white js-nav" href="#preguntas">
+                    <i class="bi bi-question-circle me-2"></i> Preguntas frecuentes
+                  </a>
+                </li>
+
+                <hr class="text-white opacity-50">
+
+                <!-- Accesos directos a slides específicos -->
+                <li class="nav-item">
+                  <a class="nav-link text-white js-slide" href="#galeria" data-slide="0">
+                    <i class="bi bi-chat-dots me-2"></i> Consultar
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-white js-slide" href="#galeria" data-slide="1">
+                    <i class="bi bi-calendar-check me-2"></i> Reservar fecha
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-white js-slide" href="#galeria" data-slide="2">
+                    <i class="bi bi-cash-coin me-2"></i> Cotizar
+                  </a>
+                </li>
+
+              </ul>
+
+            </div>
         </div>
       </div>
     </div>
@@ -93,7 +144,7 @@
               Maquillaje social profesional, resistente y perfecto para fotos y video.
             </p>
 
-            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="1">
+            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="0">
               Consultar
             </a>
 
@@ -128,7 +179,7 @@
               Prueba previa + maquillaje el día del evento. Look elegante y duradero.
             </p>
 
-            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="2">
+            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="1">
               Reservar fecha
             </a>
 
@@ -162,9 +213,10 @@
               Maquillaje profesional para cámara, continuidad y retoques en set.
             </p>
 
-            <a href="#" class="btn btn-primary w-100 mt-auto">
+            <a href="#galeria" class="btn btn-primary w-100 mt-auto js-goto-slide" data-slide="2">
               Cotizar
             </a>
+
 
           </div>
 
@@ -175,50 +227,42 @@
     </div>
   </div>
 </div>
-
     <div class="section galeria">
-  <!-- Slide 1: Consultar -->
-  <div class="slide" data-anchor="consultar">
-    <div class="container text-white">
-      <h2 class="fw-bold">Consultar</h2>
-      <p class="lead">Contame fecha, tipo de evento y zona. Te respondo por WhatsApp.</p>
-      <a class="btn btn-light" href="#servicios">Volver a Servicios</a>
+
+      <div class="slide" data-anchor="consultar">
+        <div class="slide-inner container text-white">
+          <h2 class="fw-bold">Consultar</h2>
+          <p class="lead">Contame fecha, tipo de evento y zona. Te respondo por WhatsApp.</p>
+          <a class="btn btn-light btn-sm" href="#servicios">Volver a Servicios</a>
+        </div>
+      </div>
+
+      <div class="slide" data-anchor="reservar">
+        <div class="slide-inner container text-white">
+          <h2 class="fw-bold">Reservar</h2>
+          <p class="lead">Elegí la fecha y confirmamos por WhatsApp.</p>
+
+          <div class="d-flex flex-column gap-2 mt-3">
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#reservaModal">
+              <i class="bi bi-calendar-check me-2"></i> Reservar fecha
+            </button>
+
+            <a href="#servicios" class="btn btn-outline-light btn-sm">Volver</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" data-anchor="cotizar">
+        <div class="slide-inner container text-white">
+          <h2 class="fw-bold">Cotizar</h2>
+          <p class="lead">Cine & producciones: continuidad, retoques y maquillaje para cámara.</p>
+          <a class="btn btn-light btn-sm" href="#servicios">Volver a Servicios</a>
+        </div>
+      </div>
+
     </div>
-  </div>
-
-  <!-- Slide 2: Reservar -->
-  <div class="slide" data-anchor="reservar">
-  <div class="mt-4">
- 
-       
-   <button 
-  class="btn btn-primary bi bi-calendar-check me-2"
-  data-bs-toggle="modal"
-  data-bs-target="#reservaModal">
-  Reservar fecha
-</button>
-
-  <a href="#servicios"
-     class="btn btn-outline-light btn-lg px-4">
-     Volver
-  </a>
-</div>
-
-  </div>
-
-  <!-- Slide 3: Cotizar -->
-  <div class="slide" data-anchor="cotizar">
-    <div class="container text-white">
-      <h2 class="fw-bold">Cotizar</h2>
-      <p class="lead">Cine & producciones: continuidad, retoques y maquillaje para cámara.</p>
-      <a class="btn btn-light" href="#servicios">Volver a Servicios</a>
-    </div>
-  </div>
-</div>
 
 
-
- 
 
 
 <div class="section preguntas">

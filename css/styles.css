@@ -157,7 +157,7 @@ h1{
 .galeria .slide:nth-child(3){ background: linear-gradient(135deg,#2a003f,#8e5a6a); }
 
 .galeria .slide{
-  display:flex;
+ 
   align-items:center;
   justify-content:center;
   text-align:center;
@@ -222,6 +222,17 @@ h1{
     margin-right: 0 !important;
   }
 
+  .fp-controlArrow{
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+
+  .fp-controlArrow.fp-prev{
+    border-width: 20px 18px 20px 0 !important;
+  }
+  .fp-controlArrow.fp-next{
+    border-width: 20px 0 20px 18px !important;
+  }
 }
 
 .footer-fixed{
