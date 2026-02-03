@@ -319,7 +319,7 @@ h1{
 .btn-top{
   position: fixed;
   right:  15px;
-  bottom: 50px;      /* 👈 sube el botón */
+  bottom: 85px;      /* 👈 sube el botón */
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -359,3 +359,102 @@ h1{
   object-fit: cover;
 }
 
+
+
+/* =========================
+   FOOTER PRO
+========================= */
+
+.footer-fixed{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+
+  background: linear-gradient(135deg,#b76e79,#8e5a6a);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 -4px 20px rgba(0,0,0,.25);
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 8px;
+}
+
+.footer-copy{
+  font-size:.85rem;
+  opacity:.9;
+  color:#fff;
+}
+
+/* ===== Iconos ===== */
+
+.footer-social{
+  display:flex;
+  gap:10px;
+}
+
+.social-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  color:#fff;
+
+  font-size:18px;
+  text-decoration:none;
+
+  background:rgba(255,255,255,.15);
+
+  transition:.25s;
+}
+
+/* hover animado */
+.social-btn:hover{
+  transform: translateY(-3px) scale(1.08);
+  background:rgba(255,255,255,.28);
+}
+
+/* colores por marca */
+.social-btn.ig:hover{
+  background:#e1306c;
+}
+
+.social-btn.wa:hover{
+  background:#25d366;
+}
+
+.social-btn.mail:hover{
+  background:#6c63ff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .footer-inner{
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .footer-copy{
+    font-size:.75rem;
+    text-align:center;
+  }
+
+  .social-btn{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+}
