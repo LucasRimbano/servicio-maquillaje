@@ -27,13 +27,7 @@ h1{
   min-height: 100vh;
 }
 
-/* Centrar slides */
-.slide{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+
 
 /* Intro */
 .intro p{
@@ -152,16 +146,6 @@ h1{
   100% { transform: translateX(-50%) translateY(0); }
 }
 
-.galeria .slide:nth-child(1){ background: linear-gradient(135deg,#8e5a6a,#ff3cac); }
-.galeria .slide:nth-child(2){ background: linear-gradient(135deg,#7c4858,#a100ff); }
-.galeria .slide:nth-child(3){ background: linear-gradient(135deg,#2a003f,#8e5a6a); }
-
-.galeria .slide{
- 
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
 
 
 
@@ -222,30 +206,77 @@ h1{
     margin-right: 0 !important;
   }
 
-  .fp-controlArrow{
-    transform: scale(0.55);
-    opacity: 0.55;
-  }
-
-  .fp-controlArrow.fp-prev{
-    border-width: 20px 18px 20px 0 !important;
-  }
-  .fp-controlArrow.fp-next{
-    border-width: 20px 0 20px 18px !important;
-  }
-   
   .servicios .container{
     padding-bottom: 100px;
   }
-
-  .carousel-control-prev,
-  .carousel-control-next{
-    width: 12%;
-    opacity: .7;
+  
+   /* que el container no quede apretado y respire */
+  .galeria .container{
+    padding-top: 90px;   /* por la navbar fija */
+    padding-bottom: 110px; /* por el footer fijo */
   }
 
-  .carousel-indicators{
-    bottom: -12px;
+  /* que el bloque del form quede más prolijo en mobile */
+  .galeria form{
+    padding: 16px !important;
+    border-radius: 18px !important;
+    backdrop-filter: blur(6px);
+  }
+
+  /* título y texto */
+  .galeria h2{
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  .galeria .lead{
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+
+  /* labels más compactos */
+  .galeria .form-label{
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  /* inputs + select + textarea más cómodos al tacto */
+  .galeria .form-control,
+  .galeria .form-select{
+    font-size: 16px;       /* 🔥 evita zoom automático en iPhone */
+    padding: 12px 12px;
+    border-radius: 12px;
+  }
+
+  /* textarea */
+  .galeria textarea.form-control{
+    min-height: 110px;
+    resize: none;
+  }
+
+  /* grid: fuerza 1 columna en mobile (aunque uses col-md-6) */
+  .galeria .row.g-3 > [class*="col-"]{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* botones full width y cómodos */
+  .galeria .col-12.d-flex{
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .galeria .col-12.d-flex .btn{
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+
+  /* por si el footer fijo tapa algo */
+  .servicios .container{
+    padding-bottom: 110px;
   }
    
 }

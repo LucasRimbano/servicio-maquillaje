@@ -1,177 +1,161 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+  // ============================
+  // Helpers / refs
+  // ============================
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   const btnTop = document.getElementById("btnTop");
   const offcanvasEl = document.getElementById("offcanvasDarkNavbar");
   const offcanvas = offcanvasEl ? bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl) : null;
 
-  // activar popovers
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-  popoverTriggerList.forEach(el => new bootstrap.Popover(el, {
-    trigger: "click"   // ✅ fuerza click aunque el HTML diga otra cosa
-  }));
+  // ============================
+  // Popovers (click)
+  // ============================
+  document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+    new bootstrap.Popover(el, { trigger: "click" });
+  });
 
-  if (typeof fullpage === "undefined") {
-    console.error("❌ fullpage NO cargó");
-    return;
-  }
-
+  // ============================
+  // AOS
+  // ============================
   if (typeof AOS !== "undefined") {
     AOS.init({ duration: 900, once: false, disable: false });
   }
 
-  new fullpage("#fullpage", {
-    autoScrolling: true,
-    scrollBar: false,
-    scrollOverflow: !isMobile, // ✅ clave
-    responsiveWidth: 768,
-    navigation: true,
-    slidesNavigation: true,
-    controlArrows: true,
-    fixedElements: ".navbar",
-    normalScrollElements: '[data-bs-toggle="popover"], .popover',
-    paddingTop: "70px",
-    anchors: ["inicio", "servicios", "galeria", "preguntas"],
+  // ============================
+  // fullPage
+  // ============================
+  if (typeof fullpage === "undefined") {
+    console.error("❌ fullpage NO cargó");
+  } else {
+    new fullpage("#fullpage", {
+      autoScrolling: true,
+      scrollBar: false,
+      scrollOverflow: !isMobile,
+      responsiveWidth: 768,
+      navigation: true,
 
-    afterLoad: function(origin, destination) {
-      if (typeof AOS !== "undefined") AOS.refreshHard();
-      
-      destination.item.querySelectorAll("[data-aos]").forEach(el => el.classList.add("aos-animate"));
-    },
+      fixedElements: ".navbar",
+      // (ya no hay modal/form, pero lo dejo igual por compatibilidad)
+      normalScrollElements: "[data-bs-toggle='popover'], .popover",
+      paddingTop: "70px",
 
-    onLeave: function(origin, destination) {
-      document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
-        const instance = bootstrap.Popover.getInstance(el);
-        if (instance) instance.hide();
-      });
-      origin.item.querySelectorAll("[data-aos]").forEach(el => el.classList.remove("aos-animate"));
-      
-       if(destination.index > 0){
-        btnTop.classList.add("show");
-      } else {
-        btnTop.classList.remove("show");
+      anchors: ["inicio", "servicios", "reservar", "preguntas"],
+
+      afterLoad: function (origin, destination) {
+        if (typeof AOS !== "undefined") AOS.refreshHard();
+        destination.item
+          .querySelectorAll("[data-aos]")
+          .forEach(el => el.classList.add("aos-animate"));
+      },
+
+      onLeave: function (origin, destination) {
+        // cerrar popovers al salir
+        document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+          const instance = bootstrap.Popover.getInstance(el);
+          if (instance) instance.hide();
+        });
+
+        // reset AOS
+        origin.item
+          .querySelectorAll("[data-aos]")
+          .forEach(el => el.classList.remove("aos-animate"));
+
+        // botón top
+        if (btnTop) {
+          if (destination.index > 0) btnTop.classList.add("show");
+          else btnTop.classList.remove("show");
+        }
       }
-    
-    }
-  });
- 
-    // Links normales (secciones por anchor)
+    });
+  }
+
+  // ============================
+  // Cerrar offcanvas al tocar links
+  // ============================
   document.querySelectorAll(".js-nav").forEach(link => {
     link.addEventListener("click", () => {
       if (offcanvas) offcanvas.hide();
     });
   });
 
-  // Links que van a un slide específico dentro de galería
-  document.querySelectorAll(".js-slide").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const slide = Number(link.dataset.slide || 0);
-
-      // ir a la sección galeria y luego al slide
-      if (typeof fullpage_api !== "undefined") {
-        fullpage_api.moveTo("galeria", slide);
-      } else {
-        // fallback: por si no está fullpage_api
-        location.hash = "#galeria";
-      }
-
-      if (offcanvas) offcanvas.hide();
+  // ============================
+  // Botón subir arriba
+  // ============================
+  if (btnTop) {
+    btnTop.addEventListener("click", () => {
+      if (typeof fullpage_api !== "undefined") fullpage_api.moveTo("inicio");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  });
-
-  // 🔥 subir arriba con fullPage (NO scrollTo)
-  btnTop.addEventListener("click", () => {
-    fullpage_api.moveTo(1);
-  });
+  }
 
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refreshHard();
   }, 300);
 
-  document.querySelectorAll(".js-goto-slide").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const slide = Number(btn.dataset.slide || 1);
+  // ============================
+  // ✅ RESERVA CLÁSICA (PROMPT + localStorage + consola + WhatsApp)
+  // ============================
+  class Cliente {
+    static id = 0;
 
-    // sección 2 por anchor: "galeria"
-    fullpage_api.moveTo("galeria", slide);
-  });
-});
+    constructor(nombre, evento, fecha, telefono) {
+      this.id = ++Cliente.id;
+      this.nombre = nombre;
+      this.evento = evento;
+      this.fecha = fecha;
+      this.telefono = telefono;
+    }
 
-});
+    descripcion() {
+      return `Hola Julieta 💄
+Quiero reservar maquillaje.
 
-class Cliente {
+👤 Nombre: ${this.nombre}
+💍 Evento: ${this.evento}
+📅 Fecha: ${this.fecha}
+📞 Teléfono: ${this.telefono}
 
-  static id = 0;
-
-  constructor(nombre, evento, fecha, telefono){
-    this.id = ++Cliente.id;
-    this.nombre = nombre;
-    this.evento = evento;
-    this.fecha = fecha;
-    this.telefono = telefono;
-  }
-
-  descripcion(){
-  return `Hola Julieta 💄
-    Quiero reservar maquillaje.
-
-    👤 Nombre: ${this.nombre}
-    💍 Evento: ${this.evento}
-    📅 Fecha: ${this.fecha}
-    📞 Teléfono: ${this.telefono}
-
-    ¿Tenés disponibilidad para esa fecha?`;
-  }
-
-}
-
-let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-
-
-const form = document.getElementById("formReserva");
-
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const nombre = document.getElementById("nombre").value;
-  const evento = document.getElementById("evento").value;
-  const fecha = document.getElementById("fecha").value;
-  const telefono = document.getElementById("telefono").value;
-
-  const cliente = new Cliente(nombre, evento, fecha, telefono);
-
-  reservas.push(cliente);
-
-  localStorage.setItem("reservas", JSON.stringify(reservas));
-
-  // 👉 redirige a WhatsApp automáticamente
-  const mensaje = encodeURIComponent(cliente.descripcion());
-  window.open(`https://wa.me/54911XXXXXXXX?text=${mensaje}`);
-
-  form.reset();
-
-});
-
-function goToSection(anchor) {
-  // Si fullPage está activo, navegar por API
-  if (typeof fullpage_api !== "undefined" && fullpage_api && fullpage_api.moveTo) {
-    try {
-      fullpage_api.moveTo(anchor);
-      return;
-    } catch (e) {
-      // cae al fallback
+¿Tenés disponibilidad para esa fecha?`;
     }
   }
 
-  // Fallback para mobile (cuando fullPage está desactivado por responsiveWidth)
-  const section = document.querySelector(`.section.${anchor}`) || document.getElementById(anchor);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  } else {
-    // último fallback: hash
-    location.hash = `#${anchor}`;
+  let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+  const btnReserva = document.getElementById("btnReserva");
+  if (!btnReserva) {
+    console.warn("⚠️ No existe #btnReserva en el HTML");
+    return;
   }
-}
+
+  btnReserva.addEventListener("click", () => {
+    const nombre = prompt("Tu nombre:");
+    if (!nombre) return;
+
+    const evento = prompt("Tipo de evento (boda, 15, cumple, producción):");
+    if (!evento) return;
+
+    const fecha = prompt("Fecha (dd/mm/aaaa):");
+    if (!fecha) return;
+
+    const telefono = prompt("Tu teléfono / WhatsApp:");
+    if (!telefono) return;
+
+    const cliente = new Cliente(nombre.trim(), evento.trim(), fecha.trim(), telefono.trim());
+
+    // guardar
+    reservas.push(cliente);
+    localStorage.setItem("reservas", JSON.stringify(reservas));
+
+    // mostrar en consola
+    console.log("📌 Reserva guardada:", cliente);
+    console.log("📦 Total reservas:", reservas);
+
+    alert("✅ Reserva guardada. Te llevo a WhatsApp.");
+
+    // WhatsApp
+    const telefonoDestino = "54911XXXXXXXX"; // <-- CAMBIAR por el real
+    const mensaje = encodeURIComponent(cliente.descripcion());
+    window.open(`https://wa.me/${telefonoDestino}?text=${mensaje}`, "_blank");
+  });
+});
