@@ -318,8 +318,8 @@ h1{
 }
 .btn-top{
   position: fixed;
-  right:  15px;
-  bottom: 85px;      /* 👈 sube el botón */
+  right:  8px;
+  bottom: 105px;      /* 👈 sube el botón */
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -457,4 +457,19 @@ h1{
     height:34px;
     font-size:16px;
   }
+}
+.footer-credit {
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.footer-credit a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-credit a:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
